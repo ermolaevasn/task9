@@ -23,17 +23,17 @@ class Program
 {
         static void Main(string[] args)
         {
-            int N;
+            int N;//кол-во элементов в списке
             Console.WriteLine("Ведите количество элементов N для двунаправленного списка");
             Vvod("количество элементов N = ", out N);
             Proverka("количество элементов N", ref N);
-            //часть, которую нельзя удалять
-            Point list = new Point();
+          
+            Point list = new Point();//создание списка
             Point beg = new Point();
             Make(N, 1, ref list, beg);
-            Write(list);
+            Write(list);//вывод его на экран
             Console.WriteLine();
-            //конец части, которую нельзя удалять
+            
             Random rnd = new Random();
             // удаление первого элемента
             Delete(1, ref list, beg);
@@ -43,13 +43,13 @@ class Program
             Delete(N, ref list, beg);
             Write(list);
             Console.WriteLine();
-            // удаление среднего элемента
+            // удаление элемента от 2 до N
             Delete(rnd.Next(2, N), ref list, beg);
             Write(list);
             Console.WriteLine();
             Console.ReadLine();
         }
-        static void Make(int N, int num, ref Point List, Point beg)
+        static void Make(int N, int num, ref Point List, Point beg)//функция рекурсионного создания двунаправленного списка
     {
         if (num == 1)
             beg = List;
@@ -67,7 +67,7 @@ class Program
         }
 
     }
-    static void Write(Point list)
+    static void Write(Point list)//фуекция для вывода списка на экран
     {
         Point beg = new Point();
         beg = list;
@@ -78,7 +78,7 @@ class Program
             beg = beg.Next;
         }
     }
-    static void Delete(int num, ref Point List, Point beg)
+    static void Delete(int num, ref Point List, Point beg)//функция удаления
     {
         if (beg.inf == 0) beg = List;
         if (beg.inf == num)
@@ -101,7 +101,7 @@ class Program
             Delete(num, ref List, beg);
         }
     }
-    static double Vvod(string s, out int n)//ввод числа
+    static double Vvod(string s, out int n)//ввод числа N
     {
         bool ok;
         string buf;
@@ -114,7 +114,7 @@ class Program
         } while (!ok);
         return n;
     }
-    static void Proverka(string s, ref int a)//проверка ввода на отрицательность
+    static void Proverka(string s, ref int a)//проверка числа на отрицательность
     {
         bool ok = false;
         string buf;
